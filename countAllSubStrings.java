@@ -14,51 +14,59 @@ public class countAllSubStrings {
     public static void main(String[] args) {
         Scanner in = new Scanner(System.in);
         String s = in.next();
-        countAllSubStrings obj = new countAllSubStrings();
-        int cnt = obj.distinctSubStringCount(s);
+        int cnt = distinctSubStringCount(s);
         System.out.println(cnt);
+        in.close();
     }
 
     static class TrieNode {
         TrieNode children[];
         boolean isEnd;
 
-        TrieNode() {
+        public TrieNode() {
             this.children = new TrieNode[26];
             this.isEnd = false;
         }
-    }
 
-    static TrieNode root = new TrieNode();
-
-    static void insert(String s) {
-        TrieNode cur = root;
-        for (char ch : s.toCharArray()) {
-            int idx = ch - 'a';
-
-            if (cur.children[idx] == null)
-                cur.children[idx] = new TrieNode();
-            cur = cur.children[idx];
+        boolean containsKey(char ch) {
+            return (children[ch - 'a'] != null);
         }
-        cur.isEnd = true;
+
+        TrieNode get(char ch) {
+            return children[ch - 'a'];
+        }
+
+        void put(char ch, TrieNode node) {
+            children[ch - 'a'] = node;
+        }
+
+        void setEnd() {
+            isEnd = true;
+        }
+
+        boolean isEnd() {
+            return isEnd;
+        }
     }
 
-    public int distinctSubStringCount(String s) {
+    public static int distinctSubStringCount(String s) {
+        TrieNode root = new TrieNode();
+
         int cnt = 0;
 
-        for (int i = 0; i <= s.length(); i++) {
+        for (int i = 0; i < s.length(); i++) {
             TrieNode temp = root;
             for (int j = i; j < s.length(); j++) {
                 char ch = s.charAt(j);
 
-                if (temp.children[ch - 'a'] == null) {
-                    temp.children[ch - 'a'] = new TrieNode();
+                if (!temp.containsKey(ch)) {
+                    temp.put(ch, new TrieNode());
                     temp.isEnd = true;
                     cnt++;
                 }
-                temp = temp.children[ch - 'a'];
+                temp = temp.get(ch);
             }
         }
-        return cnt;
+        return cnt + 1;
     }
 }

@@ -16,6 +16,7 @@ class Coins {
         res = obj.compute(V);
 
         System.out.println(res);
+        sc.close();
     }
 
     int[] coins = { 1, 2, 5, 10, 20, 50, 100, 500, 1000 };

@@ -10,6 +10,7 @@ public class KthRootOfNumber {
 
         KthRootOfNumber obj = new KthRootOfNumber();
         System.out.println(obj.solve(number, exponential));
+        sc.close();
     }
 
     int solve(int no, int e) {

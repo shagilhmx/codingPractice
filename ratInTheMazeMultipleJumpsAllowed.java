@@ -15,8 +15,8 @@ public class ratInTheMazeMultipleJumpsAllowed {
             }
         }
 
-        ratInTheMazeMultipleJumpsAllowed obj = new ratInTheMazeMultipleJumpsAllowed();
         ratInTheMazeMultipleJumpsAllowed.solveMaze(maze, n);
+        sc.close();
     }
 
     static boolean solveMaze(int maze[][], int n) {

@@ -21,6 +21,7 @@ public class KthLargestElement {
         KthLargestElement obj = new KthLargestElement();
         ans = obj.solve(num1, num2, m, n, k);
         System.out.println("Kth Largest element-" + ans);
+        sc.close();
     }
 
     int solve(int num1[], int num2[], int m, int n, int k) {
